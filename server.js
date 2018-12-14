@@ -20,13 +20,18 @@ app.get('/tables', function (req, res) {
 });
 
 app.get('/api/tables', function (res, req) {
-    return res.json();
+    return res.json(connection.query('SELECT * FROM reservations').then(response => {
+        return response;
+    })
+    )
 });
 
 app.get('/api/waitlist', function (res, req) {
-    return res.json();
+    return res.json(connection.query('SELECT * FROM waitlist').then(response => {
+        return response;
+    }));
 });
 
-app.listen(PORT, function () {
-    console.log('App listening on PORT ' + PORT)
+app.listen(3000, function () {
+    console.log('App listening on PORT ' + 3000)
 });
