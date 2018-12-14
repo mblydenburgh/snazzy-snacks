@@ -1,5 +1,24 @@
 var express = require('express');
 var path = require('path');
+const mysql = require('promise-mysql');
+
+function connectToDB(){
+    mysql.createConnection({
+        host:"127.0.0.1",
+        user:"root",
+        password:"#SadieMombo1114",
+        database:"snazzy_db"
+    })
+    .then(async function(connection){
+        let data = connection.query(`SELECT * FROM reservations`);
+        return data;
+    })
+    .then(function(data){
+        console.log(data);
+    })
+}
+
+connectToDB();
 
 var app = express();
 var PORT = process.env.PORT;
