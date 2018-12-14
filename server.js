@@ -86,9 +86,15 @@ app.get('/api/tables', function (req,res) {
     // return res.send(queryReservations());
 });
 
-app.get('/api/waitlist', function (res, req) {
+app.get('/api/waitlist', function (req, res) {
     return resse.json(queryWaitlist());
 });
+
+app.post('/reserve', function (req, res) {
+    let data = req.body
+    console.log(data);
+    addReservation(data);
+})
 
 app.listen(3000, function () {
     console.log('App listening on PORT ' + 3000)
