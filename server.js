@@ -37,6 +37,39 @@ function queryWaitlist(){
     })
 }
 
+function addReservation(){
+    mysql.createConnection({
+        host:"127.0.0.1",
+        user:"root",
+        password:dbPass,
+        database:"snazzy_db"
+    })
+    .then(async function(connection){
+        let data = await connection.query(`INSERT INTO reservations (name,phone,email,unique_id)
+        VALUES (?,?,?,?)`,[]);
+        return data;
+    })
+    .then(function(data){
+        console.log(data);
+    })
+}
+
+function addWaitList(){
+    mysql.createConnection({
+        host:"127.0.0.1",
+        user:"root",
+        password:dbPass,
+        database:"snazzy_db"
+    })
+    .then(async function(connection){
+        let data = await connection.query(`INSERT INTO reservations (name,phone,email,unique_id)
+        VALUES (?,?,?,?)`,[]);
+        return data;
+    })
+    .then(function(data){
+        console.log(data);
+    })
+}
 
 
 var app = express();
