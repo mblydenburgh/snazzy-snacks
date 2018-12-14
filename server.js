@@ -40,7 +40,7 @@ function queryWaitlist(){
 }
 
 function addReservation(postData){
-    const {} = postData;
+    const {name,phoneNumber,email,uniqueID} = postData;
     mysql.createConnection({
         host:"127.0.0.1",
         user:"root",
@@ -52,7 +52,7 @@ function addReservation(postData){
         if(currentReservations.length < 6){
             //add to reservations
             let data = await connection.query(`INSERT INTO reservations (name,phone,email,unique_id)
-        VALUES (?,?,?,?)`,[]);
+        VALUES (?,?,?,?)`,[name,phoneNumber,email,uniqueID]);
         return data;
         }
         else{
@@ -97,12 +97,8 @@ app.get('/api/tables', function (req,res) {
 });
 
 app.get('/api/waitlist', function (req, res) {
-<<<<<<< HEAD
     queryWaitlist()
     .then(data=>res.send(data));
-=======
-    return resse.json(queryWaitlist());
->>>>>>> 798bfb68e37cb7e94647450f63bb284070bc01b1
 });
 
 app.post('/reserve', function (req, res) {
