@@ -5,7 +5,7 @@ require('dotenv').config()
 const dbPass = process.env.DB_PASS;
 
 
-function connectToDB(){
+function queryReservations(){
     mysql.createConnection({
         host:"127.0.0.1",
         user:"root",
@@ -13,7 +13,7 @@ function connectToDB(){
         database:"snazzy_db"
     })
     .then(async function(connection){
-        let data = connection.query(`SELECT * FROM reservations`);
+        let data = await connection.query(`SELECT * FROM reservations`);
         return data;
     })
     .then(function(data){
@@ -21,7 +21,23 @@ function connectToDB(){
     })
 }
 
-connectToDB();
+function queryWaitlist(){
+    mysql.createConnection({
+        host:"127.0.0.1",
+        user:"root",
+        password:dbPass,
+        database:"snazzy_db"
+    })
+    .then(async function(connection){
+        let data = await connection.query(`SELECT * FROM waitlist`);
+        return data;
+    })
+    .then(function(data){
+        console.log(data);
+    })
+}
+
+
 
 var app = express();
 var PORT = process.env.PORT;
