@@ -6,7 +6,7 @@ const dbPass = process.env.DB_PASS;
 
 
 function queryReservations(){
-    mysql.createConnection({
+    return mysql.createConnection({
         host:"127.0.0.1",
         user:"root",
         password:"#SadieMombo1114",
@@ -18,6 +18,7 @@ function queryReservations(){
     })
     .then(function(data){
         console.log(data);
+        return data;
     })
 }
 
@@ -77,12 +78,16 @@ app.get('/tables', function (req, res) {
     res.sendFile(path.join(__dirname, 'tables.html'));
 });
 
-app.get('/api/tables', function (res, req) {
-    return (queryReservations())
+app.get('/api/tables', function (req,res) {
+    // console.log(res);
+    // res.send({})
+    queryReservations()
+    .then(data=>res.send(data));
+    // return res.send(queryReservations());
 });
 
 app.get('/api/waitlist', function (res, req) {
-    return res.json(queryWaitlist());
+    return resse.json(queryWaitlist());
 });
 
 app.listen(3000, function () {
