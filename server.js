@@ -9,7 +9,7 @@ function queryReservations(){
     return mysql.createConnection({
         host:"127.0.0.1",
         user:"root",
-        password:"#SadieMombo1114",
+        password:"12345687",
         database:"snazzy_db"
     })
     .then(async function(connection){
@@ -26,7 +26,7 @@ function queryWaitlist(){
     return mysql.createConnection({
         host:"127.0.0.1",
         user:"root",
-        password:"#SadieMombo1114",
+        password:"12345678",
         database:"snazzy_db"
     })
     .then(async function(connection){
