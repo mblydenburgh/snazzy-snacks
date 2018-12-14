@@ -1,12 +1,15 @@
 var express = require('express');
 var path = require('path');
 const mysql = require('promise-mysql');
+require('dotenv').config()
+const dbPass = process.env.DB_PASS;
+
 
 function connectToDB(){
     mysql.createConnection({
         host:"127.0.0.1",
         user:"root",
-        password:"#SadieMombo1114",
+        password:dbPass,
         database:"snazzy_db"
     })
     .then(async function(connection){
