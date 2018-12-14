@@ -25,7 +25,7 @@ function queryWaitlist(){
     mysql.createConnection({
         host:"127.0.0.1",
         user:"root",
-        password:dbPass,
+        password:"#SadieMombo1114",
         database:"snazzy_db"
     })
     .then(async function(connection){
@@ -82,9 +82,7 @@ app.get('/api/tables', function (res, req) {
 });
 
 app.get('/api/waitlist', function (res, req) {
-    return res.json(connection.query('SELECT * FROM waitlist').then(response => {
-        return response;
-    }));
+    return res.json(queryWaitlist());
 });
 
 app.listen(3000, function () {
