@@ -9,7 +9,7 @@ function queryReservations(){
     mysql.createConnection({
         host:"127.0.0.1",
         user:"root",
-        password:dbPass,
+        password:"#SadieMombo1114",
         database:"snazzy_db"
     })
     .then(async function(connection){
@@ -55,20 +55,7 @@ function addReservation(){
 }
 
 function addWaitList(){
-    mysql.createConnection({
-        host:"127.0.0.1",
-        user:"root",
-        password:dbPass,
-        database:"snazzy_db"
-    })
-    .then(async function(connection){
-        let data = await connection.query(`INSERT INTO reservations (name,phone,email,unique_id)
-        VALUES (?,?,?,?)`,[]);
-        return data;
-    })
-    .then(function(data){
-        console.log(data);
-    })
+    
 }
 
 
@@ -91,10 +78,7 @@ app.get('/tables', function (req, res) {
 });
 
 app.get('/api/tables', function (res, req) {
-    return res.json(connection.query('SELECT * FROM reservations').then(response => {
-        return response;
-    })
-    )
+    return (queryReservations())
 });
 
 app.get('/api/waitlist', function (res, req) {
